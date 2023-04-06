@@ -9,12 +9,18 @@ Docker exists at the Application layer, but it relies on features of the operati
 ### Terminologies
 <strong>Image</strong> : An image is a read-only template with instructions for creating a Docker container. Often, an image is based on another image, with some additional customization. For example, you may build an image which is based on the ```ubuntu``` image, but installs the Apache web server and your application, as well as the configuration details needed to make your application run.
 <br>
+
 <strong>Container</strong>: A container is a runnable instance of an image. You can create, start, stop, move, or delete a container using the Docker API or CLI. You can connect a container to one or more networks, attach storage to it, or even create a new image based on its current state.
 <br>
 
 <strong>Dockerfile</strong>: You might create your own images or you might only use those created by others and published in a registry. To build your own image, you create a Dockerfile with a simple syntax for defining the steps needed to create the image and run it. Each instruction in a Dockerfile creates a layer in the image. When you change the Dockerfile and rebuild the image, only those layers which have changed are rebuilt. This is part of what makes images so lightweight, small, and fast, when compared to other virtualization technologies.
 
 
+# Practice
+```bash
+$ mkdir docker-tutorial
+# don't close this repo, follow the steps instead.
+```
 
 ## FLASK PROJECT
 1. Creating files.
