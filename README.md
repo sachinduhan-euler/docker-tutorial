@@ -91,27 +91,43 @@ $ docker run -p 3000:5000 flask-app
 1. Make a folder & a Dockerfile inside it.
 ```bash
 $ mkdir cron
-$ touch cron/Dockerfile
+$ touch cron/Dockerfile cron/app.py cron/job
 ```
 2. Paste following code in ```cron/Dockerfile``` 👇
 ```docker
-FROM ubuntu:latest
+FROM python:3.8-slim-buster
 
-# Install cron
-RUN apt-get update
-RUN apt-get -y install cron
+RUN apt-get update && apt-get -y install cron
 
+# Copy job file to the cron.d directory
+COPY job /etc/cron.d/job
+COPY app.py /usr/src/app/app.py
+ 
+# Give execution rights on the cron job
+RUN chmod 0644 /etc/cron.d/job
+
+# Apply cron job
+RUN crontab /etc/cron.d/job
+ 
 # Create the log file to be able to run tail
 RUN touch /var/log/cron.log
-
-# Setup cron job
-RUN (crontab -l ; echo "* * * * * echo "Hello world" >> /var/log/cron.log") | crontab
-
+ 
 # Run the command on container startup
 CMD cron && tail -f /var/log/cron.log
 ```
+3. paste the code in ```cron/job``` file
+```bash
+# must be ended with a new line "LF" (Unix) and not "CRLF" (Windows)
+* * * * * /usr/local/bin/python3 /usr/src/app/app.py >> /var/log/cron.log 2>&1
+# An empty line is required at the end of this file for a valid cron file.
+```
 
-3. Build your image
+4. paste the code in ```cron/app.py``` file
+```python
+print("hello world")
+```
+
+5. Build your image
 ```bash
 $ docker build -t cron-job cron
 $ docker run cron-job
