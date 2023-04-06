@@ -20,6 +20,7 @@ Docker exists at the Application layer, but it relies on features of the operati
 ```bash
 $ mkdir docker-tutorial
 # don't close this repo, follow the steps instead.
+$ cd docker-tutorial
 ```
 
 ## FLASK PROJECT
