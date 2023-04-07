@@ -142,3 +142,6 @@ $ docker run cron-job
 ## References 
 - https://docs.docker.com/get-started/overview/
 - https://hub.docker.com/search?q=&type=image&image_filter=official
+- PPT - https://docs.google.com/presentation/d/1KPDGqF-0J3DmiGZCm2B09m4yxX1luECGohhl4vj5XJQ/edit?usp=sharing
+- Docker : https://www.youtube.com/watch?v=3c-iBn73dDE
+- Kubernetes : https://www.youtube.com/watch?v=s_o8dwzRlu4
